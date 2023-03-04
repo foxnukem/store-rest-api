@@ -1,6 +1,5 @@
 package com.store.store.model.product;
 
-import com.store.store.model.product.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Category {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_categories")
+    @SequenceGenerator(name = "seq_categories", initialValue = 10, allocationSize = 10)
     private long id;
 
     @Column(nullable = false, unique = true)

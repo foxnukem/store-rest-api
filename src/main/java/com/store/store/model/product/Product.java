@@ -13,7 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_products")
+    @SequenceGenerator(name = "seq_products", initialValue = 10, allocationSize = 10)
     private long id;
 
     @Column(nullable = false)

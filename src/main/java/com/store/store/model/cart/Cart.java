@@ -16,7 +16,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class Cart {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_carts")
+    @SequenceGenerator(name = "seq_carts", initialValue = 10, allocationSize = 10)
     private long id;
 
     private BigDecimal totalPrice;

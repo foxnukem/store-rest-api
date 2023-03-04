@@ -18,7 +18,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_users")
+    @SequenceGenerator(name = "seq_users", initialValue = 10, allocationSize = 10)
     private long id;
 
     @Email
