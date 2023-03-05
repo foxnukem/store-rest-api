@@ -53,7 +53,7 @@ public class UserServiceTests {
     }
 
     @Test
-    void whenUserIsValidAndNew_ThenSaveIt() {
+    void whenUserIsValid_ThenSaveIt() {
         when(userRepository.save(any(User.class))).thenReturn(user);
 
         assertEquals(user, userService.save(user));
