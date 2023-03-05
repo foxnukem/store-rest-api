@@ -11,45 +11,31 @@ public interface UserService {
     /**
      * Adds new {@link User} and encrypts password. Throws {@link NullEntityReferenceException} if pass null.
      *
-     * @param user
+     * @param user new or existing instance {@link User}
      * @return merged {@link User} instance
      */
-    User create(User user);
-
-    /**
-     * Updates field of existing {@link User} entity. Throws {@link NullEntityReferenceException} if pass null. If there is no such record, throws {@link EntityNotFoundException}.
-     *
-     * @param user
-     * @return merged {@link User} instance
-     */
-    User update(User user);
+    User save(User user);
 
     /**
      * Finds {@link User} by id. If there is no record with such id, throws {@link EntityNotFoundException}.
      *
-     * @param id
+     * @param id user's id
      * @return {@link User} instance
      */
     User findById(long id);
 
-    /**
-     * Removes {@link User} by id. If there is no record with such id, throws {@link EntityNotFoundException}.
-     *
-     * @param id
-     */
-    void remove(long id);
 
     /**
      * Changes {@link User}'s role from USER to MANAGER.
      *
-     * @param user
+     * @param id user's id
      */
-    void makeUserRoleManager(User user);
+    void makeUserRoleManager(long id);
 
     /**
      * Finds all reviews of user
      *
-     * @param id
+     * @param id user's id
      * @return {@link List<Review>} instance with reviews of user
      */
     List<Review> findAllReviewsByUserId(long id);
