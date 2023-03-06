@@ -19,6 +19,8 @@ public record AddressDTO(@JsonIgnore long id, String city, String street, long h
 
     //todo
     public static Address convertDTOToEntity(AddressDTO dto) {
+        Address address = new Address();
+
         return null;
     }
 }
