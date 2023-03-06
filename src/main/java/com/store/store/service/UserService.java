@@ -24,6 +24,13 @@ public interface UserService {
      */
     User findById(long id);
 
+    /**
+     * Finds all users.
+     *
+     * @return {@link List} with {@link User} instances if there are ones
+     */
+    List<User> findAll();
+
 
     /**
      * Changes {@link User}'s role from USER to MANAGER.

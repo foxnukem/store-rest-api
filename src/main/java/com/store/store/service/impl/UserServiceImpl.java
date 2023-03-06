@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
     public void makeUserRoleManager(long id) {
         userRepository.findById(id).ifPresentOrElse(u -> {
                     if (u.getRole().equals(Role.USER)) {

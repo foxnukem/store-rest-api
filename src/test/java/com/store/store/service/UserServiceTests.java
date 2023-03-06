@@ -106,4 +106,11 @@ public class UserServiceTests {
         assertEquals(2, userService.findAllReviewsByUserId(1L).size());
     }
 
+    @Test
+    void findAll() {
+        when(userRepository.findAll()).thenReturn(List.of(new User(), new User(), new User()));
+        assertEquals(3, userService.findAll().size());
+        verify(userRepository, times(1)).findAll();
+    }
+
 }
