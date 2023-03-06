@@ -18,7 +18,7 @@ public class Category {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "category", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
     @Setter(AccessLevel.PRIVATE)
     @ToString.Exclude
     private List<Product> products;

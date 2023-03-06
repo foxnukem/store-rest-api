@@ -23,7 +23,7 @@ public class Product {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -35,14 +35,4 @@ public class Product {
     @Setter(AccessLevel.PRIVATE)
     @ToString.Exclude
     private List<Review> reviews = new ArrayList<>();
-
-    public void addReview(Review review) {
-        reviews.add(review);
-        review.setProduct(this);
-    }
-
-    public void removeReview(Review review) {
-        reviews.remove(review);
-        review.setProduct(null);
-    }
 }
