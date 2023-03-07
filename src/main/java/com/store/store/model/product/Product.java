@@ -23,7 +23,7 @@ public class Product {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "category_id")
     private Category category;
 

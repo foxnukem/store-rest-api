@@ -38,13 +38,7 @@ public class UserServiceTests {
 
     @BeforeEach
     void setup() {
-        user = new User();
-        user.setId(1L);
-        user.setEmail("mark@gmail.com");
-        user.setFirstName("Mark");
-        user.setLastName("Huang");
-        user.setPassword("markPassword8");
-        user.setRole(Role.USER);
+        user = ServiceTestsUtils.buildTestUser();
     }
 
     @Test

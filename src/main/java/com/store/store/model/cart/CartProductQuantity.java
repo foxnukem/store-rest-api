@@ -13,7 +13,7 @@ public class CartProductQuantity {
     @EmbeddedId
     private CartProductQuantityId id = new CartProductQuantityId();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("cartId")
     private Cart cart;
 

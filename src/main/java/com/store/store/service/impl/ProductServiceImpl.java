@@ -19,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product (id=%d) was not found";
+    private static final String CATEGORY_NOT_FOUND_MESSAGE = "Category (name=%s) was not found";
     private static final String PRODUCT_NULL_ENTITY_MESSAGE = "Product cannot be 'null'";
     private static final String PRODUCT_DELETED_MESSAGE = "Product (id=%d) was deleted";
 
@@ -73,4 +74,14 @@ public class ProductServiceImpl implements ProductService {
         return categoryRepository.findAll();
     }
 
+    @Override
+    public Category findByName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new UnacceptableParameterValueException("Category name is null or empty");
+        }
+        return categoryRepository.findByName(name.toLowerCase()).orElseThrow(() -> {
+            log.error(CATEGORY_NOT_FOUND_MESSAGE.formatted(name.toLowerCase()));
+            throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE.formatted(name.toLowerCase()));
+        });
+    }
 }

@@ -1,6 +1,7 @@
 package com.store.store.service;
 
 import com.store.store.exception.NullEntityReferenceException;
+import com.store.store.exception.UnacceptableParameterValueException;
 import com.store.store.model.cart.Cart;
 import com.store.store.model.cart.OrderStatus;
 import com.store.store.model.product.Product;
@@ -29,19 +30,21 @@ public interface CartService {
     Cart findById(long id);
 
     /**
-     * Finds all existing products.
-     *
-     * @return {@link List} with {@link Cart} instances if there are ones
-     */
-    List<Cart> findAll();
-
-    /**
      * Returns list with {@link Cart} of the {@link User}
      *
      * @param userId id of the {@link User}
      * @return carts list of the user
      */
     List<Cart> findAllCartsByUser(long userId);
+
+    /**
+     * Returns list with {@link Cart} of the {@link User}
+     *
+     * @param status {@link OrderStatus} string representation
+     * @return carts list of the user
+     * @throws UnacceptableParameterValueException if pass null or an empty string
+     */
+    List<Cart> findAllByOrderStatus(String status);
 
     /**
      * Changes current status of the order.

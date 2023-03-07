@@ -47,6 +47,7 @@ public interface ProductService {
      *
      * @param category category's name
      * @return {@link List<Product>} with {@link Product} instances if there are ones
+     * @throws UnacceptableParameterValueException if pass null or an empty string
      */
     List<Product> findAllProductsInCategory(String category);
 
@@ -54,7 +55,15 @@ public interface ProductService {
      * Finds all existing categories.
      *
      * @return {@link List<Category>} with {@link Category} instances
-     * @throws UnacceptableParameterValueException if pass null or an empty string
      */
     List<Category> findAllCategories();
+
+    /**
+     * Finds all existing products of passed category.
+     *
+     * @param name category's name
+     * @return {@link Category} instance if there is one
+     * @throws UnacceptableParameterValueException if pass null or an empty string
+     */
+    Category findByName(String name);
 }

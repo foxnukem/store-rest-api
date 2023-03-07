@@ -23,7 +23,7 @@ public interface ReviewService {
      * @return merged {@link Review} entity
      * @throws NullEntityReferenceException if pass null
      */
-    Review saveReview(Review review);
+    Review save(Review review);
 
     /**
      * Finds {@link Review} by id.
@@ -40,5 +40,5 @@ public interface ReviewService {
      * @param id id of the {@link Review}
      * @throws EntityNotFoundException if there is no record with such id
      */
-    void removeReview(long id);
+    void delete(long id);
 }

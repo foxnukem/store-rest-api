@@ -2,7 +2,9 @@ package com.store.store.model.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "addresses")
@@ -17,6 +19,8 @@ public class Address {
     @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "user_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private User user;
 
     @Column(nullable = false)

@@ -34,6 +34,7 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart")
     @Setter(AccessLevel.PRIVATE)
+    @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<CartProductQuantity> products = new HashSet<>();
 }
