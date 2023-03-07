@@ -21,7 +21,7 @@ public class StoreExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(new ErrorResponse(ex.getMessage()));
     }
 
-    @ExceptionHandler({NoSuchElementException.class, EntityNotFoundException.class, UsernameNotFoundException.class})
+    @ExceptionHandler({NoSuchElementException.class, EntityNotFoundException.class, UsernameNotFoundException.class, IllegalArgumentException.class})
     ResponseEntity<?> handleNoSuchElementException() {
         return ResponseEntity.notFound().build();
     }

@@ -2,10 +2,11 @@ package com.store.store.controller;
 
 import com.store.store.dto.CategoryDTO;
 import com.store.store.dto.ProductDTO;
+import com.store.store.model.product.Product;
 import com.store.store.service.ProductService;
-import com.store.store.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
-    private final ReviewService reviewService;
 
     @GetMapping
     ResponseEntity<List<ProductDTO>> getAllProducts() {
@@ -47,18 +47,23 @@ public class ProductController {
         return ResponseEntity.ok(productsByCategory);
     }
 
-    //todo
+    @PreAuthorize("hasAnyAuthority('MANAGER', 'ADMIN')")
     @PostMapping
     ResponseEntity<ProductDTO> addNewProduct(@RequestBody ProductDTO product) {
-        return null;
+        Product newProduct = ProductDTO.convertDTOToEntity(product);
+        return ResponseEntity.ok(ProductDTO.convertEntityToDTO(productService.save(newProduct)));
     }
 
-    //todo
+    @PreAuthorize("hasAnyAuthority('MANAGER', 'ADMIN')")
     @RequestMapping(path = "/{productId}", method = {RequestMethod.PUT, RequestMethod.PATCH})
-    ResponseEntity<ProductDTO> updateExistingProduct(@PathVariable("productId") long productId) {
-        return null;
+    ResponseEntity<ProductDTO> updateExistingProduct(@PathVariable("productId") long productId, @RequestBody ProductDTO product) {
+        Product oldProduct = productService.findById(productId);
+        Product newProduct = ProductDTO.convertDTOToEntity(product);
+        newProduct.setId(oldProduct.getId());
+        return ResponseEntity.ok(ProductDTO.convertEntityToDTO(productService.save(newProduct)));
     }
 
+    @PreAuthorize("hasAnyAuthority('MANAGER', 'ADMIN')")
     @DeleteMapping("/{productId}")
     ResponseEntity<?> delete(@PathVariable("productId") long productId) {
         productService.delete(productId);
