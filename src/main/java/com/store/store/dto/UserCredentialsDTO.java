@@ -1,4 +1,6 @@
 package com.store.store.dto;
 
-public record UserCredentialsDTO(String username, String password) {
+import jakarta.validation.constraints.NotNull;
+
+public record UserCredentialsDTO(@NotNull String username, @NotNull String password) {
 }

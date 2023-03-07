@@ -17,10 +17,15 @@ public record AddressDTO(@JsonIgnore long id, String city, String street, long h
         );
     }
 
-    //todo
     public static Address convertDTOToEntity(AddressDTO dto) {
         Address address = new Address();
-
+        address.setId(dto.id);
+        address.setCity(dto.city);
+        address.setStreet(dto.street);
+        address.setHouseNumber(dto.houseNumber);
+        address.setHouseType(dto.houseType);
+        address.setFlatNumber(dto.flatNumber);
+        address.setZipcode(dto.zipcode);
         return null;
     }
 }

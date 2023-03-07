@@ -1,5 +1,6 @@
 package com.store.store.dto;
 
+import com.store.store.model.product.Category;
 import com.store.store.model.product.Product;
 
 import java.math.BigDecimal;
@@ -20,9 +21,17 @@ public record ProductDTO(long id, String title, BigDecimal price, String categor
         );
     }
 
-    //todo
     public static Product convertDTOToEntity(ProductDTO dto) {
-        return null;
+        Product product = new Product();
+        Category category1 = new Category();
+        category1.setName(dto.category);
+        product.setId(dto.id);
+        product.setTitle(dto.title);
+        product.setPrice(dto.price);
+        product.setDescription(dto.description);
+        product.setImageUrl(dto.imageUrl);
+        product.setCategory(category1);
+        return product;
     }
 }
 
