@@ -2,6 +2,7 @@ package com.store.store.model.cart;
 
 import com.store.store.model.user.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -20,6 +21,7 @@ public class Cart {
     @SequenceGenerator(name = "seq_carts", initialValue = 10, allocationSize = 10)
     private long id;
 
+    @NotNull
     private BigDecimal totalPrice;
 
     @CreationTimestamp

@@ -1,6 +1,7 @@
 package com.store.store.model.product;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class Category {
     private long id;
 
     @Column(nullable = false, unique = true)
+    @Size(min = 1, max = 255, message = "Category name must be lesser than 255 characters")
     private String name;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)

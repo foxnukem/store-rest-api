@@ -6,6 +6,7 @@ import com.store.store.model.token.Token;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,26 +26,32 @@ public class User implements UserDetails {
 
     @Email
     @Column(nullable = false)
+    @Size(max = 255)
     private String email;
 
     @NotBlank
     @Column(nullable = false)
+    @Size(max = 255)
     private String password;
 
     @NotBlank
     @Column(nullable = false)
+    @Size(max = 255)
     private String firstName;
 
     @NotBlank
     @Column(nullable = false)
+    @Size(max = 255)
     private String lastName;
 
     @NotBlank
     @Column(nullable = false)
+    @Size(max = 255)
     private String phone;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @Size(max = 255)
     private Role role;
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)

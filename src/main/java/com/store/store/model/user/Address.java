@@ -1,6 +1,7 @@
 package com.store.store.model.user;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,11 @@ public class Address {
     private User user;
 
     @Column(nullable = false)
+    @Size(min = 1, max = 255, message = "City name cannot be blank")
     private String city;
 
     @Column(nullable = false)
+    @Size(min = 1, max = 255, message = "Street name cannot be blank")
     private String street;
 
     @Column(nullable = false)
